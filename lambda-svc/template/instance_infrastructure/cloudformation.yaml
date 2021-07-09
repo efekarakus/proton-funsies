@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: {{service_instance.inputs.lambda_timeout}}
+    Tracing: Active
+    MemorySize: {{service_instance.inputs.lambda_memory}}
+
+Resources:
+  ReplicatorLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: "{{service_instance.inputs.code_uri}}"
+      Handler: "{{service_instance.inputs.callback_handler}}"
+      Runtime: "{{service_instance.inputs.lambda_runtime}}"
+      Policies: AWSLambdaDynamoDBExecutionRole
+      Events:
+        Stream:
+          Type: DynamoDB
+          Properties:
+            Stream: {{service_instance.inputs.stream_arn}}
+            BatchSize: 100
+            StartingPosition: TRIM_HORIZON
+      VpcConfig:
+        SecurityGroupIds:
+        - {{environment.outputs.EnvironmentSecurityGroup}}
+        SubnetIds: !Split [',', '{{environment.outputs.PublicSubnets}}']

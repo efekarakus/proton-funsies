@@ -1,0 +1,46 @@
+schema:
+  format:
+    openapi: "3.0.0"
+  service_input_type: "ReplicatorLambdaInput"
+
+  types:
+    ReplicatorLambdaInput:
+      type: object
+      description: "Input properties for the replicator lambda"
+      required:
+      - stream_arn
+      - code_uri
+      properties:
+        callback_handler:
+          type: string
+          description: "the path for the handler responsible for callbacks"
+          minLength: 1
+          maxLength: 50
+          default: "index.handler"
+        stream_arn:
+          type: string
+          description: "the arn of the dynamodb stream"
+          minLength: 1
+          maxLength: 200
+        lambda_memory:
+          type: number
+          description: "the size of your Lambda functions in MB"
+          default: 512
+          minimum: 1
+          maximum: 3008
+        lambda_timeout:
+          type: number
+          description: "the timeout in seconds of your Lambda function"
+          default: 30
+          minimum: 1
+          maximum: 900
+        lambda_runtime:
+          type: string
+          description: "the runtime for your Lambda service"
+          enum: ["nodejs14.x", "python3.8", "ruby2.7", "java11", "go1.x", "dotnetcore3.1"]
+          default: "nodejs14.x"
+        code_uri:
+          type: string
+          description: "the s3 link to your application"
+          minLength: 1
+          maxLength: 200

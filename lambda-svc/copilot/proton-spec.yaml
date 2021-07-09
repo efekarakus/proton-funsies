@@ -1,0 +1,9 @@
+proton: ServiceSpec
+instances:
+  - name: demo-test-ddb-replicator
+    environment: demo-test-shadow
+    spec:
+      stream_arn: >-
+        arn:aws:dynamodb:us-west-2:615288112214:table/demo-test-frontend-hello/stream/2021-07-09T17:11:21.031
+      code_uri: 's3://karakuse-proton-funsies1/function.zip'
+      lambda_memory: 512

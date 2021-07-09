@@ -1,0 +1,45 @@
+schema:
+  format:
+    openapi: "3.0.0"
+  environment_input_type: "EnvironmentOutput"
+  types:
+    EnvironmentOutput:
+      type: object
+      description: "Output properties for my environment"
+      properties:
+        VpcId:
+          type: string
+        PublicSubnets:
+          type: string
+        PrivateSubnets:
+          type: string
+        ServiceDiscoveryNamespaceID:
+          type: string
+        EnvironmentSecurityGroup:
+          type: string
+        PublicLoadBalancerDNSName:
+          type: string
+        PublicLoadBalancerFullName:
+          type: string
+        PublicLoadBalancerHostedZone:
+          type: string
+        HTTPListenerArn:
+          type: string
+        HTTPSListenerArn:
+          type: string
+        DefaultHTTPTargetGroupArn:
+          type: string
+        ClusterId:
+          type: string
+        EnvironmentManagerRoleARN:
+          type: string
+        CFNExecutionRoleARN:
+          type: string
+        EnvironmentHostedZone:
+          type: string
+        EnvironmentSubdomain:
+          type: string
+        EnabledFeatures:
+          type: string
+        ManagedFileSystemID:
+          type: string

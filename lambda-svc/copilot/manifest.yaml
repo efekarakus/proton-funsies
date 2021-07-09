@@ -1,0 +1,10 @@
+name: ddb-replicator
+type: ddb-replicator-lambda
+
+# Required parameters
+code:
+  build: code
+stream_arn: 'arn:aws:dynamodb:us-west-2:615288112214:table/demo-test-frontend-hello/stream/2021-07-09T17:11:21.031'
+
+# Optional parameters
+lambda_memory: 512
